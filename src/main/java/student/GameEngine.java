@@ -1,9 +1,15 @@
 package student;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class GameEngine {
     private String input;
+    private static HashMap <String, ArrayList<String>> itemMap;
+    private static HashMap <String, ArrayList<String>> directionMap;
+    private ArrayList<String> itemsPickedUp;
+    private ArrayList<String> roomsTraversed;
 
     public String startGame(String userInput) {
         input = userInput.toLowerCase();
@@ -11,7 +17,7 @@ public class GameEngine {
 
         if (command[0].equals("go")) {
             if (command.length == 1) {
-               return "Please specify the direction of movement";
+                return "Please specify the direction of movement";
             }
             if (command.length > 2) {
                 return "Please specify one direction of movement";
@@ -57,13 +63,10 @@ public class GameEngine {
         if (userInput.equals("exit") || userInput.equals("quit")) {
             return "Thanks for playing!";
         }
-        else {
-            return invalidCommand(userInput);
-        }
+        return invalidCommand(userInput);
     }
 
-    public String invalidCommand(String userInput) {
+    public String invalidCommand (String userInput) {
         return "'" + userInput.trim() + "' is not a valid command!";
     }
-
 }
