@@ -1,0 +1,158 @@
+{
+  "startingRoom" : "Main Street",
+  "endingRoom": "Puzzle Palace",
+  "rooms":[
+    {
+      "name":"Main Street",
+      "description":"Welcome to Monstro City ! You are one stop away from Sludge Street",
+      "item": "Map",
+      "image": "to be added",
+      "directions":[
+        {
+          "directionName":"North",
+          "room": "Sludge Street"
+        }
+      ]
+    },
+    {
+      "name":"Sludge Street",
+      "description":"Sludge Street is one of the three streets in Monster City",
+      "item": "Clothes",
+      "image": "tbd",
+      "directions":[
+        {
+          "directionName":"North",
+          "room":"Ooh La Lane"
+        },
+        {
+          "directionName":"East",
+          "room":"Moshling Garden"
+        },
+        {
+          "directionName":"West",
+          "room":"Candy Cane Caves"
+        },
+        {
+          "directionName":"South",
+          "room":"Main Street"
+        }
+      ]
+    },
+    {
+      "name":"Gift Island",
+      "description":"The island is purple and green and covered in all sorts of coloured gifts.",
+      "item": "Gift",
+      "image": "http://www.pinkpt.com/neodex/images/5/5d/Roberta_Shopkeeper.gif",
+      "directions":[
+        {
+          "directionName":"West",
+          "room":"Moshling Garden"
+        }
+      ]
+    },
+    {
+      "name":"Ooh La Lane",
+      "description":"There are many buildings in this lane, but the only shop is the house store",
+      "item": "Ice cream",
+      "image": "https://bookofages.jellyneo.net/assets/imgs/lands/pages/brightvale_old_map_04_th.png",
+      "directions":[
+        {
+          "directionName":"West",
+          "room":"Observatory"
+        },
+        {
+          "directionName":"North",
+          "room":"Bleurgh Beach"
+        },
+        {
+          "directionName":"East",
+          "room":"Moshi Fun Park"
+        },
+        {
+          "directionName":"South",
+          "room":"Sludge Street"
+        }
+      ]
+    },
+    {
+      "name":"Moshling Garden",
+      "description":"The Moshling Garden is the place where users can plant different seeds to try and catch a Moshling.",
+      "item": "Dragon Fruit Seed",
+      "image": "tbd",
+      "directions":[
+        {
+          "directionName":"East",
+          "room":"Gift Island"
+        },
+        {
+          "directionName":"West",
+          "room":"Sludge Street"
+        }
+      ]
+    },
+    {
+      "name":"Candy Cane Caves",
+      "description":"The location only offers the game Moshi Cupcakes in which you can bake and decorate cupcakes",
+      "item": "Candy Cane",
+      "image": "tbd",
+      "directions":[
+        {
+          "directionName":"East",
+          "room":"Sludge Street"
+        }
+      ]
+    },
+    {
+      "name":"Observatory",
+      "description":"Just past The Port on a rocky outcrop sits the Moshi Observatory.",
+      "item": "Telescope",
+      "image": "https://thedailyneopets.com/uploads/articles/dailies/knowledge/Wheel.jpg",
+      "directions":[
+        {
+          "directionName":"East",
+          "room":"Ooh La Lane"
+        }
+      ]
+    },
+    {
+      "name":"Moshi Fun Park",
+      "description":"The Moshi Fun Park is a place in Monster City where players play games made by gaming organizations.",
+      "item": "Balloon",
+      "image": "https://bookofages.jellyneo.net/assets/imgs/characters/lg/160.png",
+      "directions":[
+        {
+          "directionName":"West",
+          "room":"Ooh La Lane"
+        },
+        {
+          "directionName":"North",
+          "room":"Puzzle Palace"
+        }
+      ]
+    },
+    {
+      "name":"Bleurgh Beach",
+      "description":"Welcome to the one and only beach of Monster City!.",
+      "item": "Sandcastle",
+      "image": "http://images.neopets.com/shopkeepers/20.gif",
+      "directions":[
+        {
+          "directionName":"South",
+          "room":"Ooh La Lane"
+        }
+      ]
+    },
+    {
+      "name":"Puzzle Palace",
+      "item": "Rox",
+      "description":"The Puzzle Palace is a location in Monster City, where players can play puzzle quizzes to earn Rox, the currency of Monster City",
+      "image": "http://images.neopets.com/art/misc/brightvale_castle_9.gif",
+      "directions":[
+        {
+          "directionName":"South",
+          "room":"Moshi Fun Park"
+        }
+      ]
+    }
+  ]
+}
