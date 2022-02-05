@@ -69,4 +69,20 @@ public class GameEngine {
     public String invalidCommand (String userInput) {
         return "'" + userInput.trim() + "' is not a valid command!";
     }
+
+    /**
+     * Function to return start up information to user.
+     * @return start up information, which includes commands for the game.
+     */
+    public String getStartUpInformation() {
+        StringBuilder startUpInfo = new StringBuilder();
+        startUpInfo.append("The following commands can interact with the map: GO, TAKE, DROP ");
+        startUpInfo.append("To check room information, use command: EXAMINE");
+        startUpInfo.append("To check locations visited, use command: TRAVEL HISTORY");
+        startUpInfo.append("To check items picked up, use command: INVENTORY");
+        startUpInfo.append("To leave the game at any time, use command QUIT or EXIT");
+        startUpInfo.append("Pick up the correct item and head to the final destination to " +
+                "win the game!");
+        return startUpInfo.toString();
+    }
 }
