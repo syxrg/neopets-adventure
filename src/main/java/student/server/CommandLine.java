@@ -16,7 +16,30 @@ public class CommandLine {
     }
 
     public void gamePlay() throws Exception {
-        System.out.println("hello");
+
+        System.out.println("Welcome to the Monstro City Map Game!");
+        System.out.println(game.getStartUpInformation());
+        System.out.println("insert current room information here");
+        System.out.println("insert current room items here");
+
+        boolean gameIsRunning = true;
+        while (gameIsRunning) {
+
+            System.out.print("> ");
+
+            String input = scanner.nextLine().trim();
+            String output = game.startGame(input);
+            System.out.println(output);
+
+            if (output.equals(GAME_EXIT)) {
+                gameIsRunning = false;
+            }
+
+            if (output.equals(GAME_WON)) {
+                gameIsRunning = false;
+
+            }
+        }
     }
 }
 
