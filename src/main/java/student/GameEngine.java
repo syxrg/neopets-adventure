@@ -1,16 +1,61 @@
 package student;
 
+import com.google.gson.Gson;
+import student.server.Layout;
+import student.server.Room;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
+
 
 public class GameEngine {
     private String input;
+    private Layout gameLayout;
+    private Room currentRoom;
     private static HashMap <String, ArrayList<String>> itemMap;
     private static HashMap <String, ArrayList<String>> directionMap;
     private ArrayList<String> itemsPickedUp;
     private ArrayList<String> roomsTraversed;
 
+
+    public GameEngine() {
+        try {
+            Gson gson = new Gson();
+            Reader jsonReader;
+            jsonReader = Files.newBufferedReader(Paths.get("src/main/resources/monstrocity.json"));
+            gameLayout = gson.fromJson(jsonReader, Layout.class);
+
+            currentRoom = gameLayout.getRoomStringAsRoomObject(gameLayout.getStartRoom());
+            itemMap = new HashMap<>();
+            directionMap = new HashMap<>();
+            itemsPickedUp = new ArrayList<>();
+            roomsTraversed = new ArrayList<>();
+
+            int numberOfRooms = gameLayout.getRooms().length;
+            for (int i = 0; i < numberOfRooms; i++) {
+                String roomName = gameLayout. getRooms()[i].getRoomName();
+                String itemsInRoom = gameLayout.getRooms()[i].getItems();
+                int numberOfDirections = gameLayout.getRooms()[i].getDirections().length;
+                for (int j = 0; j < numberOfDirections; j++) {
+                    String directions = gameLayout.getRooms()[i].getDirections()[j].getDirection();
+
+                    ArrayList<String> itemsAsArray = new ArrayList<>();
+                    ArrayList<String> directionsAsArray = new ArrayList<>();
+                    itemsAsArray.add(itemsInRoom);
+                    directionsAsArray.add(directions);
+
+                    itemMap.put(roomName, itemsAsArray);
+                    directionMap.put(roomName, directionsAsArray);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public String startGame(String userInput) {
         input = userInput.toLowerCase();
         String[] command = input.split(" +");
