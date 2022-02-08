@@ -3,14 +3,14 @@ package student.server;
 public class Room {
     private String name;
     private String description;
-    private String items;
+    private String item;
     private Direction[] directions;
 
     public Room (String nameInput, String descriptionInput, String itemsInput,
                  Direction[] directionsInput) {
         name = nameInput;
         description = descriptionInput;
-        items = itemsInput;
+        item = itemsInput;
         directions = directionsInput;
     }
 
@@ -23,7 +23,7 @@ public class Room {
     }
 
     public String getItems() {
-        return items;
+        return item;
     }
     public Direction[] getDirections() {
         return directions;

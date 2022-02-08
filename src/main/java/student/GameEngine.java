@@ -1,6 +1,8 @@
 package student;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import student.server.Direction;
 import student.server.Layout;
 import student.server.Room;
 
@@ -52,7 +54,7 @@ public class GameEngine {
                     directionMap.put(roomName, directionsAsArray);
                 }
             }
-        } catch (IOException e) {
+        } catch (JsonParseException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -79,7 +81,9 @@ public class GameEngine {
                 return "Please specify ONE item to take";
             }
             if (command.length == 2) {
-                return "EDIT LATER ok item taken";
+                String direction = command[1];
+                return (checkPossibleDirection(direction) + "\n" + getCurrentRoomInformation() +
+                        getItemInRoomInformation() + "\n");
             }
         }
         if (command[0].equals("drop")) {
@@ -94,16 +98,16 @@ public class GameEngine {
             }
         }
         if (userInput.equals("examine")) {
-            return "INSERT ROOM INFO HERE";
+            return "\n" + getCurrentRoomInformation() + getItemInRoomInformation() + "\n";
         }
         if (userInput.equals("travel history")) {
-            return "INSERT TRAVEL HISTORY";
+            return "to be added next assignment";
         }
         if (userInput.equals("inventory")) {
-            return "INVENTORY";
+            return getInventory();
         }
         if (userInput.equals("info")) {
-            return "INFO";
+            return getStartUpInformation();
         }
         if (userInput.equals("exit") || userInput.equals("quit")) {
             return "Thanks for playing!";
@@ -129,5 +133,100 @@ public class GameEngine {
         startUpInfo.append("Pick up the correct item and head to the final destination to " +
                 "win the game!" + "\n");
         return startUpInfo.toString();
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public String getCurrentRoomInformation() {
+        return getRoomInformation();
+    }
+
+    public String getRoomInformation() {
+        return "You are now at: " + getCurrentRoom().getRoomName() +  "\n" + getCurrentRoom().getDescription() + "\n" + getDirectionInformation() + "\n";
+    }
+
+    public String getDirectionInformation() {
+        StringBuilder directionInfo = new StringBuilder();
+        directionInfo.append("From here, you can go: ");
+
+        if (getCurrentRoom().getDirections() == null || getCurrentRoom().getDirections().length == 0) {
+            directionInfo.append("nowhere.");
+        } else if (getCurrentRoom().getDirections().length == 1) {
+            directionInfo.append(getCurrentRoom().getDirections()[0].getDirection());
+        } else {
+            directionInfo.append(getCurrentRoom().getDirections()[0].getDirection());
+            for (int i = 1; i < getCurrentRoom().getDirections().length - 1; i++) {
+                directionInfo.append(", ");
+                directionInfo.append(getCurrentRoom().getDirections()[i].getDirection());
+            }
+
+            directionInfo.append(", or ");
+            directionInfo.append(getCurrentRoom().getDirections()
+                    [getCurrentRoom().getDirections().length - 1].getDirection());
+        }
+
+        return directionInfo.toString();
+    }
+
+    public String getItemInRoomInformation() {
+        return getItemsInRoom(currentRoom.getRoomName());
+    }
+
+    public String getItemsInRoom(String roomName) {
+        if (roomName == null || roomName.length() == 0) {
+            throw new IllegalArgumentException("Room is invalid");
+        }
+
+        if (itemMap.get(getCurrentRoom().getRoomName()).isEmpty()) {
+            return "There are no items in this room!";
+        }
+
+        if (itemMap.containsKey(getCurrentRoom().getRoomName())) {
+            return "Items visible: " + itemMap.get(getCurrentRoom().getRoomName());
+        }
+
+        return "";
+    }
+
+    public String checkPossibleDirection(String directionName) {
+        if (directionName == null || directionName.length() == 0) {
+            throw new IllegalArgumentException("Direction is invalid");
+        }
+
+        Direction[] playerDirections = currentRoom.getDirections();
+        for (Direction direction : playerDirections) {
+            if (direction.getDirection().equalsIgnoreCase(directionName));
+            currentRoom = gameLayout.getRoomStringAsRoomObject(direction.getRoom());
+        }
+        return "";
+    }
+
+    public String getInventory() {
+        StringBuilder getInventory = new StringBuilder();
+        getInventory.append("here are the item/s you have picked up: ");
+
+        if (itemsPickedUp.size() == 0) {
+            getInventory.append("nothing.");
+        } else {
+            inventoryArrayListHelper(getInventory, itemsPickedUp);
+        }
+        return getInventory.toString();
+    }
+
+    private void inventoryArrayListHelper(StringBuilder stringBuilder, ArrayList<String> arrayList) {
+        if (arrayList.size() == 1) {
+            stringBuilder.append(arrayList.get(0));
+        } else {
+            stringBuilder.append(arrayList.get(0));
+            for (int item = 1; item < arrayList.size() - 1; item++) {
+                stringBuilder.append(", ");
+                stringBuilder.append(arrayList.get(item));
+            }
+
+            stringBuilder.append(", and");
+            stringBuilder.append(arrayList.get(arrayList.size() - 1));
+        }
     }
 }

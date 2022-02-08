@@ -19,8 +19,7 @@ public class CommandLine {
 
         System.out.println("Welcome to the Monstro City Map Game!");
         System.out.println(game.getStartUpInformation());
-        System.out.println("insert current room information here");
-        System.out.println("insert current room items here");
+        System.out.println(game.getCurrentRoomInformation() + game.getItemInRoomInformation());
 
         boolean gameIsRunning = true;
         while (gameIsRunning) {

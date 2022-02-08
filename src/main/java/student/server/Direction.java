@@ -2,16 +2,16 @@ package student.server;
 
 public class Direction {
 
-    private String direction;
+    private String directionName;
     private String room;
 
     /**
      * Constructor for Direction object
-     * @param directionInput the direction
+     * @param directionNameInput the direction
      * @param roomInput the room
      */
-    public Direction(String directionInput, String roomInput) {
-        direction = directionInput;
+    public Direction(String directionNameInput, String roomInput) {
+        directionName = directionNameInput;
         room = roomInput;
     }
 
@@ -20,7 +20,7 @@ public class Direction {
      * @return returns the direction
      */
     public String getDirection() {
-        return direction;
+        return directionName;
     }
 
     /**
