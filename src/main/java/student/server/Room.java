@@ -25,6 +25,7 @@ public class Room {
     public String getItems() {
         return item;
     }
+
     public Direction[] getDirections() {
         return directions;
     }

@@ -23,6 +23,13 @@ public class Layout {
         return rooms;
     }
 
+
+    /**
+     * Method which returns the roomName (as a string) to a Room Object.
+     * @param roomName name of the room
+     * @return a Room object of room name.
+     * @throws IllegalArgumentException when string parameter is invalid.
+     */
     public Room getRoomStringAsRoomObject(String roomName) {
         if (roomName == null || roomName.length() == 0) {
             throw new IllegalArgumentException("Room name is not valid");
