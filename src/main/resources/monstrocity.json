@@ -4,8 +4,8 @@
   "rooms":[
     {
       "name":"Main Street",
-      "description":"Welcome to Monstro City ! You are one stop away from Sludge Street",
-      "item": "Map",
+      "description":"Welcome to Monstro City! You are one stop away from Sludge Street",
+      "item": "map",
       "directions":[
         {
           "directionName":"North",
@@ -16,7 +16,7 @@
     {
       "name":"Sludge Street",
       "description":"Sludge Street is one of the three streets in Monster City",
-      "item": "Clothes",
+      "item": "clothes",
       "directions":[
         {
           "directionName":"North",
@@ -39,7 +39,7 @@
     {
       "name":"Gift Island",
       "description":"The island is purple and green and covered in all sorts of coloured gifts.",
-      "item": "Gift",
+      "item": "gift",
       "directions":[
         {
           "directionName":"West",
@@ -50,7 +50,7 @@
     {
       "name":"Ooh La Lane",
       "description":"There are many buildings in this lane, but the only shop is the house store",
-      "item": "Ice cream",
+      "item": "icecream",
       "directions":[
         {
           "directionName":"West",
@@ -73,7 +73,7 @@
     {
       "name":"Moshling Garden",
       "description":"The Moshling Garden is the place where users can plant different seeds to try and catch a Moshling.",
-      "item": "Dragon Fruit Seed",
+      "item": "seedling",
       "directions":[
         {
           "directionName":"East",
@@ -88,7 +88,7 @@
     {
       "name":"Candy Cane Caves",
       "description":"The location only offers the game Moshi Cupcakes in which you can bake and decorate cupcakes",
-      "item": "Candy Cane",
+      "item": "candy",
       "directions":[
         {
           "directionName":"East",
@@ -99,7 +99,7 @@
     {
       "name":"Observatory",
       "description":"Just past The Port on a rocky outcrop sits the Moshi Observatory.",
-      "item": "Telescope",
+      "item": "telescope",
       "directions":[
         {
           "directionName":"East",
@@ -110,7 +110,7 @@
     {
       "name":"Moshi Fun Park",
       "description":"The Moshi Fun Park is a place in Monster City where players play games made by gaming organizations.",
-      "item": "Balloon",
+      "item": "balloon",
       "directions":[
         {
           "directionName":"West",
@@ -125,7 +125,7 @@
     {
       "name":"Bleurgh Beach",
       "description":"Welcome to the one and only beach of Monster City!.",
-      "item": "Sandcastle",
+      "item": "sandcastle",
       "directions":[
         {
           "directionName":"South",
@@ -135,7 +135,7 @@
     },
     {
       "name":"Puzzle Palace",
-      "item": "Rox",
+      "item": "rox",
       "description":"The Puzzle Palace is a location in Monster City, where players can play puzzle quizzes to earn Rox, the currency of Monster City",
       "directions":[
         {
