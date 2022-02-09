@@ -24,6 +24,14 @@ public class GameEngine {
     private ArrayList<String> roomsTraversed;
 
 
+    /**
+     * Function that sets up maps and variables.
+     * itemsMap: Loads roomName (String) and items part of the room into a HashMap.
+     * itemsPicked: Set to none as no items have been picked initially, tracks items picked up for inventory.
+     * directionMap: Loads roomName (String) and directions part of the room into a HashMap.
+     * roomsTraversed: Tracks travle history.
+     * @throws Exception thrown when JSON file is not formatted correctly.
+     */
     public GameEngine() {
         try {
             Gson gson = new Gson();
@@ -58,12 +66,18 @@ public class GameEngine {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Starts the game
+     * @param userInput the command the user inputs
+     * @return returns message corresponding to user input
+     */
     public String startGame(String userInput) {
         input = userInput.toLowerCase();
         String[] command = input.split(" +");
 
         if (getCurrentRoom().getRoomName().equals(getGameLayout().getEndRoom())
-            && getItemsPickedUp().contains("rox")) {
+            && getItemsPickedUp().contains("icecream")) {
             return "\n" + "Congratulations you have won the game!";
         }
 
@@ -135,6 +149,11 @@ public class GameEngine {
         return "";
     }
 
+    /**
+     * Functions which returns invalid command message
+     * @param userInput what the user inputs
+     * @return returns an error message
+     */
     public String invalidCommand (String userInput) {
         return "'" + userInput.trim() + "' is not a valid command!";
     }
@@ -155,26 +174,51 @@ public class GameEngine {
         return startUpInfo.toString();
     }
 
+    /**
+     * Getter for currentRoom
+     * @return returns currentRoom (which was found in above function)
+     */
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
+    /**
+     * Getter for the gameLayout (utilised in Main.java)
+     * @return returns the gameLayout
+     */
     public Layout getGameLayout() {
         return gameLayout;
     }
 
+    /**
+     * ArrayList for storing items picked up by user during game
+     * @return returns itemsPicked by user
+     */
     public ArrayList<String> getItemsPickedUp() {
         return itemsPickedUp;
     }
 
+    /**
+     * Getter for current room information
+     * @return returns current room information, utilises Room class for getRoomInformation()
+     */
     public String getCurrentRoomInformation() {
         return getRoomInformation();
     }
 
+    /**
+     * Function that returns information about the room.
+     * @return returns the current room information, which includes room name and directions.
+     */
     public String getRoomInformation() {
-        return "You are now at: " + getCurrentRoom().getRoomName() +  "\n" + getCurrentRoom().getDescription() + "\n" + getDirectionInformation() + "\n";
+        return "You are now at: " + getCurrentRoom().getRoomName() +  "\n" +
+                getCurrentRoom().getDescription() + "\n" + getDirectionInformation() + "\n";
     }
 
+    /**
+     * Function that returns information about directions from a room
+     * @return returns the directions from which the user can go to from the current room
+     */
     public String getDirectionInformation() {
         StringBuilder directionInfo = new StringBuilder();
         directionInfo.append("From here, you can go: ");
@@ -198,10 +242,19 @@ public class GameEngine {
         return directionInfo.toString();
     }
 
+    /**
+     * Getter for items in a room
+     * @return returns the item that is in the currentRoom
+     */
     public String getItemInRoomInformation() {
         return getItemsInRoom(currentRoom.getRoomName());
     }
 
+    /**
+     * Function which shows user what items are in the room
+     * @param roomName the roomName user is looking for item
+     * @return returns message about what items are in the room
+     */
     public String getItemsInRoom(String roomName) {
         if (roomName == null || roomName.length() == 0) {
             throw new IllegalArgumentException("Room is invalid");
@@ -218,6 +271,11 @@ public class GameEngine {
         return "";
     }
 
+    /**
+     * Function which checks if user can go specified direction
+     * @param directionName the direction user wants to go
+     * @return allows user to move in direction, or returns a message if it is not a valid direction
+     */
     public String checkPossibleDirection(String directionName) {
         if (directionName == null || directionName.length() == 0) {
             throw new IllegalArgumentException("Direction is invalid");
@@ -233,6 +291,10 @@ public class GameEngine {
         return "\n" + "'" + directionName + "' is not a valid direction to go.";
     }
 
+    /**
+     * Function which shows user the items they have picked up.
+     * @return a list of items the user has picked up.
+     */
     public String getInventory() {
         StringBuilder getInventory = new StringBuilder();
         getInventory.append("Here are the item/s you have picked up: ");
@@ -245,6 +307,12 @@ public class GameEngine {
         return getInventory.toString();
     }
 
+    /**
+     * Function for user to take an item
+     * @param item  the user wants to take
+     * @return returns message about whether user was successful in taking item or not
+     * @throws IllegalArgumentException if item is null or there is no item (JSON error, not user)
+     */
     public String takeItem(String item) {
         if (item == null || item.length() == 0) {
             throw new IllegalArgumentException("Invalid item");
@@ -275,6 +343,12 @@ public class GameEngine {
         }
     }
 
+    /**
+     * Function for user to drop an item
+     * @param item item the user wants to drop
+     * @return returns message about whether use was successul in dropping item or not
+     * @throws IllegalArgumentException if item is null or there is no item (JSON error, not user)
+     */
     public String dropItem(String item) {
         if (item == null || item.length() == 0) {
             throw new IllegalArgumentException("Item is invalid");
