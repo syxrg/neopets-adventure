@@ -62,7 +62,12 @@ public class GameEngine {
         input = userInput.toLowerCase();
         String[] command = input.split(" +");
 
-        if (command[0].equals("go")) {
+        if (getCurrentRoom().getRoomName().equals(getGameLayout().getEndRoom())
+            && getItemsPickedUp().contains("rox")) {
+            return "\n" + "Congratulations you have won the game!";
+        }
+
+        else if (command[0].equals("go")) {
             if (command.length == 1) {
                 return "Please specify the direction of movement";
             }
@@ -70,10 +75,13 @@ public class GameEngine {
                 return "Please specify one direction of movement";
             }
             if (command.length == 2) {
-                return "EDIT LATER ok moved here";
+                String direction = command[1];
+                return (checkPossibleDirection(direction) + "\n" + getCurrentRoomInformation() +
+                        getItemInRoomInformation() + "\n");
             }
         }
-        if (command[0].equals("take")) {
+
+        else if (command[0].equals("take")) {
             if (command.length == 1) {
                 return "Please specify the item to take";
             }
@@ -81,12 +89,13 @@ public class GameEngine {
                 return "Please specify ONE item to take";
             }
             if (command.length == 2) {
-                String direction = command[1];
-                return (checkPossibleDirection(direction) + "\n" + getCurrentRoomInformation() +
-                        getItemInRoomInformation() + "\n");
+                String item = command[1];
+                return takeItem(item);
+
             }
         }
-        if (command[0].equals("drop")) {
+
+        else if (command[0].equals("drop")) {
             if (command.length == 1) {
                 return "Please specify item to drop";
             }
@@ -94,25 +103,36 @@ public class GameEngine {
                 return "Please specify ONE item to drop";
             }
             if (command.length == 2) {
-                return "EDIT LATER ok item dropped";
+                String item = command[1];
+                return dropItem(item);
             }
         }
-        if (userInput.equals("examine")) {
+
+        else if (userInput.equals("examine")) {
             return "\n" + getCurrentRoomInformation() + getItemInRoomInformation() + "\n";
         }
-        if (userInput.equals("travel history")) {
+
+        else if (userInput.equals("travel history")) {
             return "to be added next assignment";
         }
-        if (userInput.equals("inventory")) {
+
+        else if (userInput.equals("inventory")) {
             return getInventory();
         }
-        if (userInput.equals("info")) {
+
+        else if (userInput.equals("info")) {
             return getStartUpInformation();
         }
-        if (userInput.equals("exit") || userInput.equals("quit")) {
+
+        else if (userInput.equals("exit") || userInput.equals("quit")) {
             return "Thanks for playing!";
         }
-        return invalidCommand(userInput);
+
+        else {
+            return invalidCommand(userInput);
+        }
+
+        return "";
     }
 
     public String invalidCommand (String userInput) {
@@ -137,6 +157,14 @@ public class GameEngine {
 
     public Room getCurrentRoom() {
         return currentRoom;
+    }
+
+    public Layout getGameLayout() {
+        return gameLayout;
+    }
+
+    public ArrayList<String> getItemsPickedUp() {
+        return itemsPickedUp;
     }
 
     public String getCurrentRoomInformation() {
@@ -197,22 +225,70 @@ public class GameEngine {
 
         Direction[] playerDirections = currentRoom.getDirections();
         for (Direction direction : playerDirections) {
-            if (direction.getDirection().equalsIgnoreCase(directionName));
-            currentRoom = gameLayout.getRoomStringAsRoomObject(direction.getRoom());
+            if (direction.getDirection().equalsIgnoreCase(directionName)) {
+                currentRoom = gameLayout.getRoomStringAsRoomObject(direction.getRoom());
+                return "";
+            }
         }
-        return "";
+        return "\n" + "'" + directionName + "' is not a valid direction to go.";
     }
 
     public String getInventory() {
         StringBuilder getInventory = new StringBuilder();
-        getInventory.append("here are the item/s you have picked up: ");
+        getInventory.append("Here are the item/s you have picked up: ");
 
         if (itemsPickedUp.size() == 0) {
-            getInventory.append("nothing.");
+            getInventory.append(" ");
         } else {
             inventoryArrayListHelper(getInventory, itemsPickedUp);
         }
         return getInventory.toString();
+    }
+
+    public String takeItem(String item) {
+        if (item == null || item.length() == 0) {
+            throw new IllegalArgumentException("Invalid item");
+        }
+
+        // checking map for currentRoom status
+        if (itemMap.containsKey(getCurrentRoom().getRoomName())) {
+            // if room does not have item
+            if (itemMap.get(currentRoom.getRoomName()).size() == 0) {
+                return "This room is empty. There is no '" + item + "' to take!" + "\n";
+            }
+        }
+
+        if (item.equals("gold") && (!(itemsPickedUp.contains("key")))) {
+            return "You're missing an item to take the " + item + "!" + "\n";
+        }
+
+        // if room has item
+        else if (itemMap.get(currentRoom.getRoomName()).get(0).equals(item)) {
+            itemsPickedUp.add(item);
+            itemMap.get(getCurrentRoom().getRoomName()).remove(0);
+            return "You have taken '" + item + "'!" + "\n";
+        }
+
+        // if room does not have item
+        else {
+            return "There is no item '" + item + "' in " + getCurrentRoom().getRoomName() + "\n";
+        }
+    }
+
+    public String dropItem(String item) {
+        if (item == null || item.length() == 0) {
+            throw new IllegalArgumentException("Item is invalid");
+        }
+
+        if (itemMap.containsKey(getCurrentRoom().getRoomName())) {
+            if (itemsPickedUp.contains(item)) {
+                itemsPickedUp.remove(item);
+                itemMap.get(getCurrentRoom().getRoomName()).add(item);
+                return "You have successfully dropped '" + item + "' " + "\n";
+            }
+        }
+
+        return "You dont have the item '" + item + "' to drop!";
     }
 
     private void inventoryArrayListHelper(StringBuilder stringBuilder, ArrayList<String> arrayList) {
