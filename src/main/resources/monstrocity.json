@@ -6,6 +6,7 @@
       "name":"Main Street",
       "description":"Welcome to Monstro City! You are one stop away from Sludge Street",
       "item": "map",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/3/36/Main_Street_Icon.PNG/revision/latest/scale-to-width-down/915?cb=20130806015153",
       "directions":[
         {
           "directionName":"North",
@@ -17,6 +18,7 @@
       "name":"Sludge Street",
       "description":"Sludge Street is one of the three streets in Monster City",
       "item": "clothes",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/c/c9/Sludge_Street_Icon.PNG/revision/latest/scale-to-width-down/898?cb=20130806015201",
       "directions":[
         {
           "directionName":"North",
@@ -40,6 +42,7 @@
       "name":"Gift Island",
       "description":"The island is purple and green and covered in all sorts of coloured gifts.",
       "item": "gift",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/7/7c/Gift_island_moshi.png/revision/latest/scale-to-width-down/288?cb=20130112111011",
       "directions":[
         {
           "directionName":"West",
@@ -51,6 +54,7 @@
       "name":"Ooh La Lane",
       "description":"There are many buildings in this lane, but the only shop is the house store",
       "item": "icecream",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/2/2e/Ooh_La_Lane_Icon.PNG/revision/latest/scale-to-width-down/485?cb=20130806015210",
       "directions":[
         {
           "directionName":"West",
@@ -74,6 +78,7 @@
       "name":"Moshling Garden",
       "description":"The Moshling Garden is the place where users can plant different seeds to try and catch a Moshling.",
       "item": "seedling",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/e/ed/GardenDoor1.png/revision/latest/scale-to-width-down/528?cb=20140328211347",
       "directions":[
         {
           "directionName":"East",
@@ -89,6 +94,7 @@
       "name":"Candy Cane Caves",
       "description":"The location only offers the game Moshi Cupcakes in which you can bake and decorate cupcakes",
       "item": "candy",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/6/64/Candy_Cane_Caves.PNG/revision/latest/scale-to-width-down/646?cb=20130806015255",
       "directions":[
         {
           "directionName":"East",
@@ -100,6 +106,7 @@
       "name":"Observatory",
       "description":"Just past The Port on a rocky outcrop sits the Moshi Observatory.",
       "item": "telescope",
+      "image":"https://static.wikia.nocookie.net/moshimonsters/images/f/f1/South_Avocado_environments_Observatory.png/revision/latest/scale-to-width-down/890?cb=20151025191350",
       "directions":[
         {
           "directionName":"East",
@@ -111,6 +118,7 @@
       "name":"Moshi Fun Park",
       "description":"The Moshi Fun Park is a place in Monster City where players play games made by gaming organizations.",
       "item": "balloon",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/d/da/MoshiFunPark.png/revision/latest/scale-to-width-down/543?cb=20130629133127",
       "directions":[
         {
           "directionName":"West",
@@ -126,6 +134,7 @@
       "name":"Bleurgh Beach",
       "description":"Welcome to the one and only beach of Monster City!.",
       "item": "sandcastle",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/3/3f/Beach_Icon.PNG/revision/latest/scale-to-width-down/911?cb=20130806015311",
       "directions":[
         {
           "directionName":"South",
@@ -135,8 +144,9 @@
     },
     {
       "name":"Puzzle Palace",
-      "item": "rox",
       "description":"The Puzzle Palace is a location in Monster City, where players can play puzzle quizzes to earn Rox, the currency of Monster City",
+      "item": "rox",
+      "image": "https://static.wikia.nocookie.net/moshimonsters/images/6/62/Puzzle_Palace_Icon.PNG/revision/latest?cb=20130806015356",
       "directions":[
         {
           "directionName":"South",
