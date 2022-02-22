@@ -36,7 +36,7 @@ public class Layout {
         }
 
         boolean roomFound = false;
-        Room roomLookingFor = new Room("", null,null,null);
+        Room roomLookingFor = new Room("", null,null,null, null);
 
         for (Room roomBeingLookedFor : rooms) {
             if (roomName.equals(roomBeingLookedFor.getRoomName())) {
