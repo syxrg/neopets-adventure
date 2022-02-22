@@ -29,7 +29,7 @@ public class GameEngine {
      * itemsMap: Loads roomName (String) and items part of the room into a HashMap.
      * itemsPicked: Set to none as no items have been picked initially, tracks items picked up for inventory.
      * directionMap: Loads roomName (String) and directions part of the room into a HashMap.
-     * roomsTraversed: Tracks travle history.
+     * roomsTraversed: Tracks travel history.
      * @throws Exception thrown when JSON file is not formatted correctly.
      */
     public GameEngine() {
