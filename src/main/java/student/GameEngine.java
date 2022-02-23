@@ -414,6 +414,10 @@ public class GameEngine {
         return getItemsInRoom(currentRoom.getRoomName());
     }
 
+    /**
+     * Function that shows user their travel history
+     * @return a string containing the rooms user has been through, in order.
+     */
     public String getRoomsTraversed() {
         StringBuilder roomsGone = new StringBuilder();
 

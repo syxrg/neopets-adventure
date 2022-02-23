@@ -7,6 +7,7 @@ import student.GameEngine;
 import student.server.Layout;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -14,14 +15,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JSONTest {
-    private Layout monstrocityData;
     private GameEngine game;
+    private Layout monstrocityData;
     @Before
     public void setUp() throws IOException {
         Gson gson = new Gson();
         Reader jsonReader = null;
         jsonReader = Files.newBufferedReader(Paths.get("src/main/resources/monstrocity.json"));
         monstrocityData = gson.fromJson(jsonReader, Layout.class);
+        game = new GameEngine();
     }
 
     @Test
@@ -57,6 +59,12 @@ public class JSONTest {
     public void checkStartingRoomNextRoom() {
         String startingRoomNextRoom = "Sludge Street";
         assertEquals(startingRoomNextRoom, monstrocityData.getRooms()[1].getRoomName());
+    }
+
+    @Test
+    public void checkRoomInfoPrompt() {
+        String examineString = game.getCurrentRoomInformation();
+        assertTrue(examineString.contains("You are now at"));
     }
 
 }
