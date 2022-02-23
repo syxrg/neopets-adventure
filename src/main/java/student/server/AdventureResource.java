@@ -9,7 +9,7 @@ public class AdventureResource {
     /**
      * The single static adventure service instance used for this API.
      */
-    private static AdventureService service; // = new YourAdventureServiceHere();
+    private static AdventureService service = new MonstroCityService();
 
     /**
      * The API endpoint to test connectivity.
@@ -40,7 +40,7 @@ public class AdventureResource {
     @POST
     @Path("create")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create() throws AdventureException {
+    public Response create() throws Exception {
         int id = service.newGame();
         return getGame(id);
     }
