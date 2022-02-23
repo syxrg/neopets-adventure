@@ -5,11 +5,11 @@ import student.server.CommandLine;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        //CommandLine game = new CommandLine();
-        //game.gamePlay();
+        CommandLine game = new CommandLine();
+        game.gamePlay();
 
         //api
-        HttpServer server = AdventureServer.createServer(AdventureResource.class);
-        server.start();
+        //HttpServer server = AdventureServer.createServer(AdventureResource.class);
+        //server.start();
     }
 }

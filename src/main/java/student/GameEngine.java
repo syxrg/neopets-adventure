@@ -285,6 +285,7 @@ public class GameEngine {
         for (Direction direction : playerDirections) {
             if (direction.getDirection().equalsIgnoreCase(directionName)) {
                 currentRoom = gameLayout.getRoomStringAsRoomObject(direction.getRoom());
+                roomsTraversed.add(getCurrentRoom().getRoomName());
                 return "";
             }
         }
@@ -375,7 +376,7 @@ public class GameEngine {
                 stringBuilder.append(arrayList.get(item));
             }
 
-            stringBuilder.append(", and");
+            stringBuilder.append(", and ");
             stringBuilder.append(arrayList.get(arrayList.size() - 1));
         }
     }
@@ -415,11 +416,12 @@ public class GameEngine {
 
     public String getRoomsTraversed() {
         StringBuilder roomsGone = new StringBuilder();
-        roomsGone.append("Your travel history in Brightvale is: ");
 
         if (roomsTraversed.size() == 0) {
+            roomsGone.append("Your travel history in Brightvale is: ");
             roomsGone.append("Brightvale Entrance.");
         } else {
+            roomsGone.append("Your travel history in Brightvale is: Brightvale Entrance, ");
             arrayListHelper(roomsGone, roomsTraversed);
         }
         return roomsGone.toString();
