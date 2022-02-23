@@ -41,7 +41,7 @@ public class AdventureServer {
         }
     }
 
-    public static HttpServer createServer(final Class<?> resourceClass) throws IOException {
+    public static HttpServer createServer(final java.lang.Class resourceClass) throws IOException {
         final ResourceConfig resourceConfig = new ResourceConfig(resourceClass);
         resourceConfig.register(
                 new LoggingFeature(Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME), Level.INFO, Verbosity.PAYLOAD_ANY, 10000)

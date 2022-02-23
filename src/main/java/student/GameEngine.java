@@ -127,7 +127,7 @@ public class GameEngine {
         }
 
         else if (userInput.equals("travel history")) {
-            return "to be added next assignment";
+            return getRoomsTraversed();
         }
 
         else if (userInput.equals("inventory")) {
@@ -302,7 +302,7 @@ public class GameEngine {
         if (itemsPickedUp.size() == 0) {
             getInventory.append(" ");
         } else {
-            inventoryArrayListHelper(getInventory, itemsPickedUp);
+            arrayListHelper(getInventory, itemsPickedUp);
         }
         return getInventory.toString();
     }
@@ -365,7 +365,7 @@ public class GameEngine {
         return "You dont have the item '" + item + "' to drop!";
     }
 
-    private void inventoryArrayListHelper(StringBuilder stringBuilder, ArrayList<String> arrayList) {
+    private void arrayListHelper(StringBuilder stringBuilder, ArrayList<String> arrayList) {
         if (arrayList.size() == 1) {
             stringBuilder.append(arrayList.get(0));
         } else {
@@ -378,5 +378,50 @@ public class GameEngine {
             stringBuilder.append(", and");
             stringBuilder.append(arrayList.get(arrayList.size() - 1));
         }
+    }
+
+    /**
+     * Function utilised by MonstroCityServce.java to check if game is won or not
+     * @return Returns true if game is won, false otherwise
+     */
+    public boolean gameIsWon() {
+        if (currentRoom.getRoomName().equals("Puzzle Palace")
+                && itemsPickedUp.contains("icecream")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getWinningMessage() {
+        return "Congratulations you have won the game!";
+    }
+
+    public HashMap<String, ArrayList<String>> getDirectionMap() {
+        return directionMap;
+    }
+
+    public HashMap<String,ArrayList<String>> getItemMap() {
+        return itemMap;
+    }
+
+    public ArrayList<String> getRoomsTraversedMap() {
+        return roomsTraversed;
+    }
+
+    public String getItemInRoomInfo() {
+        return getItemsInRoom(currentRoom.getRoomName());
+    }
+
+    public String getRoomsTraversed() {
+        StringBuilder roomsGone = new StringBuilder();
+        roomsGone.append("Your travel history in Brightvale is: ");
+
+        if (roomsTraversed.size() == 0) {
+            roomsGone.append("Brightvale Entrance.");
+        } else {
+            arrayListHelper(roomsGone, roomsTraversed);
+        }
+        return roomsGone.toString();
     }
 }
